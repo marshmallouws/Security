@@ -20,6 +20,8 @@ public class Server {
 
     public static void main( String[] args ) throws IOException {
         HttpServer server = HttpServer.create( new InetSocketAddress( PORT ), DEFAULT_BACKLOG );
+        
+        // Creates new instance of Logger when someone hits the endpoint /logger
         server.createContext( "/logger", new Logger() );
         server.setExecutor( null ); // creates a default executor
         System.out.println( "Starting sever on: " + PORT );
