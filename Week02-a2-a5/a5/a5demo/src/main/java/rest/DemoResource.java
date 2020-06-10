@@ -30,6 +30,7 @@ public class DemoResource {
     @Context
     SecurityContext securityContext;
 
+    // Secured
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("user")
@@ -38,7 +39,7 @@ public class DemoResource {
         EntityManager em = emf.createEntityManager();
         String loggedInId = securityContext.getUserPrincipal().getName();
         if (!id.equals(loggedInId)) {
-            return "{\"data\": \"Motherfucker\"}";
+            return "{\"data\": \"You do not have access to this\"}";
         }
         try {
             User user = em.find(User.class, id);
@@ -52,7 +53,8 @@ public class DemoResource {
             em.close();
         }
     }
-
+    
+    // Not secured
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("user")
