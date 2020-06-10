@@ -17,10 +17,7 @@
             <div style="font-size: large" id="data"></div>
         </div>
             
-        <br/><br/>
-        <br/><br/>
         <div class="container">
-            <input type="text" id="id1" value="<%= request.getUserPrincipal().getName() %>">
             <br/><br/>
             <button id="getDataBtnV" class="bnt btn-default">Get Personal Data (Vulnerable)</button>
             <br/> <br/>
@@ -54,7 +51,7 @@
                     'Accept': 'application/json'
                 }
             };
-            fetch("api/data/v1/" + document.getElementById("id1").value, parameters)
+            fetch("api/data/v1/" + document.getElementById("id").value, parameters)
                     .then((r) => r.json())
                     .then(d => document.getElementById("data1").innerHTML = d.data);
         }
