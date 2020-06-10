@@ -26,8 +26,7 @@ public class DemoResource {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     static EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
-    ;
-    
+
     @Context
     SecurityContext securityContext;
 
@@ -37,13 +36,31 @@ public class DemoResource {
     @Path("{id}")
     public String getFromUser(@PathParam("id") String id) {
         EntityManager em = emf.createEntityManager();
-        String name = securityContext.getUserPrincipal().getName();
-        if(!id.equals(name)) {
+        String loggedInId = securityContext.getUserPrincipal().getName();
+        if (!id.equals(loggedInId)) {
             return "{\"data\": \"Motherfucker\"}";
         }
         try {
             User user = em.find(User.class, id);
-            
+
+            if (user == null) {
+                return "";
+            }
+
+            return ("{\"data\": \"" + user.getUsersData() + "\"}");  //Return as JSON
+        } finally {
+            em.close();
+        }
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("user")
+    @Path("v1/{id}")
+    public String getFromUserV1(@PathParam("id") String id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            User user = em.find(User.class, id);
             if (user == null) {
                 return "";
             }
@@ -60,5 +77,4 @@ public class DemoResource {
     public String a(@PathParam("id") String id) {
         return ("{\"data\": \" This can be read by all\"}");  //Return as JSON);
     }
-
 }
