@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class Exercise3CryptoEdit extends javax.swing.JFrame {
 
     private static final String PATH = "\\Users\\Annika\\Desktop\\Sem4\\coding_projects\\security\\code_assignments\\Week04-a3-GDPR\\cryptofile.foo";
-
+    
     private String base64Iv;
 
     public Exercise3CryptoEdit() {
@@ -115,16 +115,21 @@ public class Exercise3CryptoEdit extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
-        String all = "";
+        
+        // Decryption
         try {
-            all = new String(Files.readAllBytes(Paths.get(PATH)));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Shit happened: " + ex.getLocalizedMessage());
+            byte[] text = Files.readAllBytes(Paths.get(PATH));
+            String[] t = new String(text).split(":");
+            byte[] iv = Base64.getDecoder().decode(t[0].getBytes()); // iv is not secret
+            byte[] cipher = Base64.getDecoder().decode(t[1].getBytes());
+            byte[] keyBytes = String2Key.string2KeyArray(pwField.getText());
+            String plainText = new String(AESGoodImplementation.decrypt(keyBytes, iv, cipher));
+            
+           
+            editText.setText(plainText);
+        } catch (IOException | InvalidKeyException | InvalidAlgorithmParameterException e) {
+            // Do something 
         }
-
-        // Exercise: Implement the decryption part...
-        String decryptedMsg = "Implement";
-        editText.setText(decryptedMsg);
     }//GEN-LAST:event_loadActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
@@ -135,11 +140,12 @@ public class Exercise3CryptoEdit extends javax.swing.JFrame {
 
             //Generate a new IV.
             secureRandom.nextBytes(ivBytes);
+            
             byte[] keyBytes = String2Key.string2KeyArray(pwField.getText());
-            byte[] decryptedBytes = editText.getText().getBytes();
+            byte[] plainText = editText.getText().getBytes();
 
             String newStoredCipher = Base64.getEncoder().encodeToString(ivBytes)
-                    + ":" + Base64.getEncoder().encodeToString(AESGoodImplementation.encrypt(keyBytes, ivBytes, decryptedBytes));
+                    + ":" + Base64.getEncoder().encodeToString(AESGoodImplementation.encrypt(keyBytes, ivBytes, plainText));
             Files.write(Paths.get(PATH), newStoredCipher.getBytes());
         } catch (IOException | InvalidKeyException | InvalidAlgorithmParameterException ex) {
             JOptionPane.showMessageDialog(null, "Shit happened: " + ex.getLocalizedMessage());
