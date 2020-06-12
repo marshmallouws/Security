@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.w09.java.mysql.connection;
+package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Demo implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +45,4 @@ public class Demo implements Serializable {
     public void setInfo(String info) {
         this.info = info;
     }
-    
-    
-    
 }
