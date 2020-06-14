@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+        <cookie-config>
+            <name>MY_JSESSIONID_YAHOOOOOO</name>
+        </cookie-config>
+    </session-config>
+    
+    <security-constraint>
+        <display-name>User constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>User File</web-resource-name>
+            <url-pattern>/user.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Admin constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Admin File</web-resource-name>
+            <url-pattern>/admin.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>jdbcRealm</realm-name>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>user</role-name>
+    </security-role>
+</web-app>
