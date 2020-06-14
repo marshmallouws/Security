@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dk.cphbusiness</groupId>
-    <artifactId>w08_basic_auth2</artifactId>
+    <artifactId>w08_basic_auth</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>w08_basic_auth2</name>
+    <name>w08_basic_auth</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

@@ -39,5 +39,6 @@
     <security-role>
         <description/>
         <role-name>user</role-name>
+        <role-name>admin</role-name>
     </security-role>
 </web-app>
