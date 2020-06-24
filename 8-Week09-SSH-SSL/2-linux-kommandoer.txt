@@ -1,0 +1,1 @@
+sudo find /var/lib/mysql -name '*.pem' -ls

@@ -1,0 +1,1 @@
+mvn test org.owasp:dependency-check-maven:check

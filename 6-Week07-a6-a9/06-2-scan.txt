@@ -1,0 +1,129 @@
+# Nmap 7.80 scan initiated Tue Jun 23 10:57:18 2020 as: nmap -v -A -sV -oN 07-scan.txt 46.101.227.238
+Nmap scan report for 46.101.227.238
+Host is up (0.021s latency).
+Not shown: 996 filtered ports
+PORT     STATE SERVICE  VERSION
+22/tcp   open  ssh      OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 43:9e:b8:8d:6c:4d:ac:01:c2:ac:d4:4d:97:ab:82:53 (RSA)
+|   256 5b:bf:8d:9d:bd:63:ec:07:58:75:fc:f1:0d:3b:86:79 (ECDSA)
+|_  256 ca:c8:59:06:6e:25:5c:52:fe:80:1c:68:cd:cd:33:e6 (ED25519)
+80/tcp   open  http     nginx 1.14.0 (Ubuntu)
+|_http-server-header: nginx/1.14.0 (Ubuntu)
+|_http-title: HTTP Status 404 \xE2\x80\x93 Not Found
+443/tcp  open  ssl/http nginx 1.14.0 (Ubuntu)
+|_http-server-header: nginx/1.14.0 (Ubuntu)
+|_http-title: HTTP Status 404 \xE2\x80\x93 Not Found
+| ssl-cert: Subject: commonName=dat-security.dk
+| Subject Alternative Name: DNS:dat-security.dk, DNS:www.dat-security.dk
+| Issuer: commonName=Let's Encrypt Authority X3/organizationName=Let's Encrypt/countryName=US
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2020-06-15T09:49:36
+| Not valid after:  2020-09-13T09:49:36
+| MD5:   07c0 656b 1657 e201 c7e7 b7de 2dfe 8966
+|_SHA-1: 6f37 ed07 986c a265 f661 b51a a878 fc68 986d 213c
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+| tls-nextprotoneg: 
+|_  http/1.1
+3306/tcp open  mysql?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP: 
+|     8.0.19
+|     %%`#B&xB_
+|     caching_sha2_password
+|     packets out of order
+|   DNSVersionBindReqTCP: 
+|     8.0.19
+|     %,ws3
+|     R&jw
+|     caching_sha2_password
+|     #08S01Got packets out of order
+|   GenericLines, NULL: 
+|     8.0.19
+|     caching_sha2_password
+|   GetRequest: 
+|     8.0.19
+|     V6\x111j
+|     caching_sha2_password
+|     packets out of order
+|   HTTPOptions: 
+|     8.0.19
+|     yc,VqD;@
+|     e0b0I
+|     caching_sha2_password
+|     packets out of order
+|   Help: 
+|     8.0.19
+|     UmKa
+|     caching_sha2_password
+|     packets out of order
+|   RPCCheck: 
+|     8.0.19
+|     n])1\0
+|     >_jOh4G
+|     0*!A
+|     caching_sha2_password
+|     packets out of order
+|   RTSPRequest: 
+|     8.0.19
+|     uFBUsk
+|     W4@T
+|     caching_sha2_password
+|     packets out of order
+|   SSLSessionReq: 
+|     8.0.19
+|     :eVy
+|     i94d!
+|     caching_sha2_password
+|_    #08S01Got packets out of order
+| mysql-info: 
+|   Protocol: 10
+|   Version: 8.0.19
+|   Thread ID: 12808
+|   Capabilities flags: 65535
+|   Some Capabilities: SwitchToSSLAfterHandshake, IgnoreSpaceBeforeParenthesis, Support41Auth, ConnectWithDatabase, SupportsTransactions, LongPassword, FoundRows, DontAllowDatabaseTableColumn, InteractiveClient, IgnoreSigpipes, ODBCClient, SupportsCompression, Speaks41ProtocolNew, SupportsLoadDataLocal, Speaks41ProtocolOld, LongColumnFlag, SupportsMultipleResults, SupportsMultipleStatments, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: {\x19D \x03@xe6o_8Q>Ss\x126%v
+|_  Auth Plugin Name: caching_sha2_password
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.80%I=7%D=6/23%Time=5EF2185A%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,4E,"J\0\0\0\n8\.0\.19\0\xeb1\0\x007\x1fr6<\x1a\x02J\0\xff\xff\xff\x0
+SF:2\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\0\x0b\x1f\x0b\x0e`E6\x0f3/\x0c\x1f\0c
+SF:aching_sha2_password\0")%r(GenericLines,4E,"J\0\0\0\n8\.0\.19\0\xeb1\0\
+SF:x007\x1fr6<\x1a\x02J\0\xff\xff\xff\x02\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\
+SF:0\x0b\x1f\x0b\x0e`E6\x0f3/\x0c\x1f\0caching_sha2_password\0")%r(GetRequ
+SF:est,6D,"J\0\0\0\n8\.0\.19\0\xec1\0\0V6\\\x111j\x1a\n\0\xff\xff\xff\x02\
+SF:0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\x008iZ\x04W=\?\x16\x13w\x15%\0caching_s
+SF:ha2_password\0\x1b\0\0\x01\xff\x84\x04Got\x20packets\x20out\x20of\x20or
+SF:der")%r(HTTPOptions,6D,"J\0\0\0\n8\.0\.19\0\xed1\0\0yc,VqD;@\0\xff\xff\
+SF:xff\x02\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\0_\x02e0b0I\x1aS<\x0c\x1d\0cach
+SF:ing_sha2_password\0\x1b\0\0\x01\xff\x84\x04Got\x20packets\x20out\x20of\
+SF:x20order")%r(RTSPRequest,6D,"J\0\0\0\n8\.0\.19\0\xee1\0\0\x13x\x17%\x14
+SF:{Ev\0\xff\xff\xff\x02\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\0\x14uFBUsk\x02W4
+SF:@T\0caching_sha2_password\0\x1b\0\0\x01\xff\x84\x04Got\x20packets\x20ou
+SF:t\x20of\x20order")%r(RPCCheck,6D,"J\0\0\0\n8\.0\.19\0\xef1\0\0\x10i\x01
+SF:n\]\)1\\\0\xff\xff\xff\x02\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\0>_jOh4G\x06
+SF:0\*!A\0caching_sha2_password\0\x1b\0\0\x01\xff\x84\x04Got\x20packets\x2
+SF:0out\x20of\x20order")%r(DNSVersionBindReqTCP,73,"J\0\0\0\n8\.0\.19\0\xf
+SF:01\0\0%,ws3\x0b\x0fT\0\xff\xff\xff\x02\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\
+SF:0\x1fO\n\x15\x01R&jw\x178V\0caching_sha2_password\0!\0\0\x01\xff\x84\x0
+SF:4#08S01Got\x20packets\x20out\x20of\x20order")%r(DNSStatusRequestTCP,6D,
+SF:"J\0\0\0\n8\.0\.19\0\xf11\0\0<!3\x05r\x7f\(2\0\xff\xff\xff\x02\0\xff\xc
+SF:7\x15\0\0\0\0\0\0\0\0\0\0%%`#B&xB_\x057=\0caching_sha2_password\0\x1b\0
+SF:\0\x01\xff\x84\x04Got\x20packets\x20out\x20of\x20order")%r(Help,6D,"J\0
+SF:\0\0\n8\.0\.19\0\xf21\0\0I\x1a\x18sj\x0f/\.\0\xff\xff\xff\x02\0\xff\xc7
+SF:\x15\0\0\0\0\0\0\0\0\0\0\x11UmKa\x1b6\x131N=\x01\0caching_sha2_password
+SF:\0\x1b\0\0\x01\xff\x84\x04Got\x20packets\x20out\x20of\x20order")%r(SSLS
+SF:essionReq,73,"J\0\0\0\n8\.0\.19\0\xf31\0\0\x16\x15:eVy\x1a\)\0\xff\xff\
+SF:xff\x02\0\xff\xc7\x15\0\0\0\0\0\0\0\0\0\0pf\x14!>\x0ci94d!\x04\0caching
+SF:_sha2_password\0!\0\0\x01\xff\x84\x04#08S01Got\x20packets\x20out\x20of\
+SF:x20order");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Jun 23 10:57:47 2020 -- 1 IP address (1 host up) scanned in 29.08 seconds
